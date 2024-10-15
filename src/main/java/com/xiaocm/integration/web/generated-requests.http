@@ -1,0 +1,18 @@
+###
+GET http://localhost:8080/opai/access-token
+
+<> 2024-10-15T160316.200.json
+
+###
+GET http://localhost:8080/opai/user-info
+
+###
+GET http://localhost:8080/opai/dept-list
+
+
+
+
+<> 2024-10-15T161009.200.json
+<> 2024-10-15T160834.200.json
+<> 2024-10-15T160758.200.json
+<> 2024-10-15T160725.200.json
