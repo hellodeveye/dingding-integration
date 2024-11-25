@@ -3,6 +3,7 @@ package com.xiaocm.integration.listener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import com.dingtalk.open.app.api.OpenDingTalkStreamClientBuilder;
@@ -10,9 +11,10 @@ import com.dingtalk.open.app.api.security.AuthClientCredential;
 import com.dingtalk.open.app.stream.protocol.event.EventAckStatus;
 import com.xiaocm.integration.config.DingConfigProperties;
 
+
 import lombok.extern.slf4j.Slf4j;
 
-// @Component
+@Component
 @Slf4j
 public class DingStreamListener implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -20,7 +22,7 @@ public class DingStreamListener implements ApplicationListener<ApplicationReadyE
     private DingConfigProperties dingConfigProperties;
 
     @Override
-    public void onApplicationEvent(ApplicationReadyEvent readyEvent) {
+    public void onApplicationEvent(@NonNull ApplicationReadyEvent readyEvent) {
         try {
             // 在这里添加SpringBoot容器启动后需要执行的逻辑
             OpenDingTalkStreamClientBuilder
