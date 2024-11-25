@@ -1,8 +1,5 @@
 package com.xiaocm.integration.web;
 
-import com.xiaocm.integration.config.DingConfigProperties;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.dingtalk.api.DefaultDingTalkClient;
