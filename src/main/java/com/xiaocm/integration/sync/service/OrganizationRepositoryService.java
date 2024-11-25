@@ -7,6 +7,7 @@ import com.xiaocm.integration.sync.mapper.*;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -30,7 +31,8 @@ public class OrganizationRepositoryService extends ServiceImpl<OrganizationMappe
     @Transactional
     public void saveOrUpdate(OrganizationAggregate organization) {
         // 保存或更新组织
-        super.saveOrUpdate(organization);
+        Organization org = new Organization();
+        super.saveOrUpdate(org);
 
         // 保存或更新部门
         List<Department> departments = organization.getDepartments();
@@ -38,7 +40,7 @@ public class OrganizationRepositoryService extends ServiceImpl<OrganizationMappe
             for (Department dept : departments) {
                 dept.setOrganizationId(organization.getId());
             }
-            departmentMapper.insertOrUpdateBatch(departments);
+            departmentMapper.insertOrUpdate(departments);
         }
 
         // 保存或更新用户
@@ -47,7 +49,7 @@ public class OrganizationRepositoryService extends ServiceImpl<OrganizationMappe
             for (User user : users) {
                 user.setOrganizationId(organization.getId());
             }
-            userMapper.insertOrUpdateBatch(users);
+            userMapper.insertOrUpdate(users);
         }
 
         // 保存或更新角色
@@ -56,7 +58,7 @@ public class OrganizationRepositoryService extends ServiceImpl<OrganizationMappe
             for (Role role : roles) {
                 role.setOrganizationId(organization.getId());
             }
-            roleMapper.insertOrUpdateBatch(roles);
+            roleMapper.insertOrUpdate(roles);
         }
 
         // 保存或更新岗位
@@ -65,20 +67,23 @@ public class OrganizationRepositoryService extends ServiceImpl<OrganizationMappe
             for (Position position : positions) {
                 position.setOrganizationId(organization.getId());
             }
-            positionMapper.insertOrUpdateBatch(positions);
+            positionMapper.insertOrUpdate(positions);
         }
     }
 
     @Transactional(readOnly = true)
     public OrganizationAggregate findById(String id) {
-        OrganizationAggregate org = super.getById(id);
-        if (org != null) {
-            org.setDepartments(new LazyList<>(() -> departmentMapper.selectByOrganizationId(id)));
-            org.setUsers(new LazyList<>(() -> userMapper.selectByOrganizationId(id)));
-            org.setRoles(new LazyList<>(() -> roleMapper.selectByOrganizationId(id)));
-            org.setPositions(new LazyList<>(() -> positionMapper.selectByOrganizationId(id)));
-        }
-        return org;
+        Organization byId = super.getById(id);
+//
+//
+//        if (org != null) {
+//
+//            org.setDepartments(new LazyList<>(() -> departmentMapper.selectById(id)));
+//            org.setUsers(new LazyList<>(() -> userMapper.selectById(id)));
+//            org.setRoles(new LazyList<>(() -> roleMapper.selectById(id)));
+//            org.setPositions(new LazyList<>(() -> positionMapper.selectById(id)));
+//        }
+        return null;
     }
 
     @Transactional
