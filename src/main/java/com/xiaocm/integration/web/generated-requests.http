@@ -1,18 +1,33 @@
 ###
 GET http://localhost:8080/opai/access-token
 
-<> 2024-10-15T160316.200.json
-
 ###
 GET http://localhost:8080/opai/user-info
+
+###
+GET http://localhost:8080/opai/user/0121600133841607
 
 ###
 GET http://localhost:8080/opai/dept-list
 
 
+###
+POST http://localhost:8080/todos/users/h1fjVLMdD6RMnIDOSQXiPzgiEiE/tasks/query
+content-type: application/json
+
+{
+    "nextToken": null,
+    "isDone": false
+}
 
 
-<> 2024-10-15T161009.200.json
-<> 2024-10-15T160834.200.json
-<> 2024-10-15T160758.200.json
-<> 2024-10-15T160725.200.json
+###
+POST http://localhost:8080/todos/users/h1fjVLMdD6RMnIDOSQXiPzgiEiE/tasks
+content-type: application/json
+
+{
+  "creatorId": "h1fjVLMdD6RMnIDOSQXiPzgiEiE",
+  "sourceId": null,
+  "subject": "todo3",
+  "executorIds": ["h1fjVLMdD6RMnIDOSQXiPzgiEiE"]
+}
